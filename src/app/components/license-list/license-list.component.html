@@ -1,0 +1,9 @@
+<p>Solicitudes de licencias!</p>
+<ng-container *ngIf="loadSpinner">
+  <spinner></spinner>
+</ng-container>
+<ng-container *ngIf="!loadSpinner">
+  <ng-container *ngIf="dataLicense.length !== 0">
+    <reusable-table [data]="dataLicense" [columns]="columns"> </reusable-table>
+  </ng-container>
+</ng-container>

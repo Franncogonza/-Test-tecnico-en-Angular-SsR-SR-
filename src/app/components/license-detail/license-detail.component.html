@@ -1,0 +1,10 @@
+<div class="container mt-5 mb-5">
+    <h3>Detalle de la solicitud</h3>
+    <ng-container *ngIf="licenseData$.length !== 0">
+        <license-information></license-information>
+        <personal-information></personal-information>
+    </ng-container>
+    <ng-container *ngIf="licenseData$.length === 0">
+        <empty-state-licenses mt-5></empty-state-licenses>
+    </ng-container>
+</div>

@@ -1,0 +1,105 @@
+<section id="mainTable">
+    <div id="container">
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <ng-container  *ngFor="let column of columns">
+                            <th scope="col" class="text-center sortable" *ngIf="column.sortable" (click)="sortable(column.field)">
+                                {{column.headerName}}
+                            </th>
+                            <th scope="col" class="text-center" *ngIf="!column.sortable">
+                                {{column.headerName}}
+                            </th>
+                        </ng-container>
+                        <th class="text-center" *ngIf="action">
+                            Acciones
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let d of data" class="text-center">
+                        <td *ngFor="let c of columns; index as i" [ngSwitch]="c.field"
+                            [ngClass]="
+                            (c.field === 'medicDiagnostic') ? 'forceLeft' :
+                            (c.field === 'cuil') ? 'forceLeftCuil' :
+                            (c.field === 'name') ? 'forceLeft' :
+                            (c.field === 'surname') ? 'forceLeft' :
+                            'text-center'"
+                            >
+                            <!-- licenses -->
+                            <span *ngSwitchCase="'id'" (click)="detail(d)" class="pointer text-center">{{d.id}}</span>
+                            <span *ngSwitchCase="'tenant'">{{d.user.businessId}}</span>
+                            <span *ngSwitchCase="'cuil'" class="pointer" > {{d.user.cuil}} </span>
+                            <!-- (click)="historial(d.user.cuil)" -->
+                            <span *ngSwitchCase="'surname'">{{d.user.surname}}</span>
+                            <span *ngSwitchCase="'name'">{{d.user.name}}</span>
+                            <span *ngSwitchCase="'medicDiagnostic'">
+                                <!-- pregnancy and birth doesnt include a medic diagnotics-->
+                                <span *ngIf="d.medicDiagnostic">{{d.medicDiagnostic.description}}</span>
+                                <span *ngIf="!d.medicDiagnostic">{{d.typeLicense.description | uppercase }}</span>
+                            </span>
+                            <span *ngSwitchCase="'typeLicense'">{{d.typeLicense.description}}</span>
+                            <span *ngSwitchCase="'typeLicenses'">{{d.typeLicense}}</span>
+                            <span *ngSwitchCase="'workstation'">{{d.descriptionOU | titlecase}}</span>
+                            <span *ngSwitchCase="'rol'">{{d.jobPositionDescription}}</span>
+                            <span *ngSwitchCase="'initDate'">{{d.initDate | date:'dd/MM/yyyy'}}</span>
+                            <span *ngSwitchCase="'endingDate'">{{d.endingDate | date:'dd/MM/yyyy'}}</span>
+                            <!-- licenses -->
+
+                            <!-- medical user -->
+                            <span *ngSwitchCase="'medicalUser.surname'">{{d.medicalUser.surname}}</span>
+                            <span *ngSwitchCase="'medicalUser.name'">{{d.medicalUser.name}}</span>
+                            <span *ngSwitchCase="'medicalCenter.name'">{{d.medicalCenter.name}}</span>
+                            <span *ngSwitchCase="'medicalUser.doctorRegisterNumber'"  class="pointer text-center">
+                                {{ d.medicalUser.doctorRegisterType }} {{ d.medicalUser.doctorRegisterNumber}}
+                            </span>
+                            <span *ngSwitchCase="'entryDate'">{{d.entryDate | date:'dd/MM/yyyy'}}</span>
+                            <span *ngSwitchCase="'insurancePolicy.expired'">
+                                <span *ngIf="d.insurancePolicy.expired === true">
+                                    VIGENTE
+                                </span>
+                                <span *ngIf="d.insurancePolicy.expired === false">
+                                    EXPIRADA
+                                </span>
+                            </span>
+                            <span *ngSwitchCase="'days'">{{d.days}} <span *ngIf="d.days">días</span></span>
+                            <!-- medical user -->
+
+                            <!-- medical center -->
+                            <span *ngSwitchCase="'created'">{{d.created | date:'dd/MM/yyyy'}}</span>
+                            <span *ngSwitchCase="'appointmentDate'">{{d.appointmentDate | date:'dd/MM/yyyy'}}</span>
+                            <span *ngSwitchCase="'userOwner'">{{d.userOwner?.name  | titlecase}} {{d.userOwner?.surname  | titlecase}}</span>
+                            <!-- medical center -->
+
+                            <span *ngSwitchCase="'status'" class="d-flex aling-center">
+                                <!-- <reusable-state [status]="d.status"></reusable-state> -->
+                            </span>
+
+                            <!-- auditor profesional -->
+                            <span *ngSwitchCase="'medicalCertificateDate'">{{d.medicalCertificateDate | date:'dd/MM/yyyy'}}</span>
+                            <!-- auditor profesional -->
+
+
+
+                            <span *ngSwitchDefault>{{d[c.field]}}</span>
+
+                        </td>
+
+                        <td *ngIf="action" [ngSwitch]="d.typeLicense">
+                                <div class="dropdown">
+                                    <i class="bi bi-three-dots-vertical three-dots" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                                        aria-expanded="false"></i>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <li><a class="dropdown-item three-dots" (click)="editLicense(d)">Editar</a></li>
+                                        <li><a class="dropdown-item three-dots" (click)="deleteLicense(d)">Eliminar</a></li>
+                                    </ul>
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>

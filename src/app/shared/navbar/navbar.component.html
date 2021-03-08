@@ -1,0 +1,14 @@
+<ul ngbNav #nav="ngbNav" class="nav-tabs">
+  <li ngbNavItem>
+    <a ngbNavLink [routerLink]="['home']">
+      <img src="../../../assets/img/emer-logo.jfif" width="150" alt="">
+    </a>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink [routerLink]="['home']">Home</a>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink [routerLink]="['about']">About</a>
+  </li>
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-5"></div>

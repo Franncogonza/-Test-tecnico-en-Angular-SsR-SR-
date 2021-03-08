@@ -1,0 +1,55 @@
+$primario: #d73264;
+$secundario:  #1e5a87;
+$terceario: #cccccc;
+
+.nav-link{
+    font-size: 16px;
+    text-align: center;
+
+    line-height: 1.2;
+    span{
+        font-size: 14px;
+        opacity: 0.7;
+    }
+}
+
+.nav-pills .nav-link.active{
+    border-radius: 0;
+    font-weight: 700;
+    padding: 20px;
+    color: $primario;
+    font-size: 16px;
+}
+
+li{
+    margin-right: 20px;
+}
+
+.nav {
+    border-bottom: 1px solid $terceario;
+}
+.section {
+    color: $primario;
+    padding: 30px;
+    font-size: 28px;
+    font-weight: bold;
+}
+.breadcrumbs {
+    color: $secundario;
+    font-size: 20px;
+    font-weight: normal;
+}
+.submenu {
+    position: relative;
+    left: 30%;
+    bottom: 0;
+    width: 300px;
+    padding-top: 25px;
+}
+.inactive {
+    border-radius: 0;
+    font-weight: 700;
+    padding: 20px;
+    color: #16c2a2;
+    font-size: 16px;
+}

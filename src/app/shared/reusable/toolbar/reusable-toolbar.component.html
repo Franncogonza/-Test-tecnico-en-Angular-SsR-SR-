@@ -1,0 +1,15 @@
+<h3 *ngIf="section" class="section">
+    {{ section }}
+    <span *ngIf="breadcrumbs" class="breadcrumbs">{{ breadcrumbs }}</span>
+</h3>
+<ul class="nav nav-pills first-toolbar">
+    <li class="nav-item pointer" *ngFor="let t of tabs">
+        <a class="nav-link" [ngClass]="t.tab === currentTab ? 'active': 'inactive'"(click)="goTo(t)">
+            {{ t.title }}
+            <span *ngIf="t.subtitle"><br>{{ t.subtitle }}</span>
+        </a>
+    </li>
+    <li class="nav-item submenu pointer" *ngIf="textAction">
+        <a class="nav-link" (click)="callToAction()">{{ textAction }}</a>
+    </li>
+</ul>

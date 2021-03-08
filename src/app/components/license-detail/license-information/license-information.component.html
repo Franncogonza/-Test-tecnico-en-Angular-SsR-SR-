@@ -1,0 +1,13 @@
+<ul class="list-group list-group-flush mt-3">
+    <li class="list-group-item">Información de la Licencia</li>
+    <li>ID: {{licenseData$.id}}</li>
+    <li>ESTADO: {{licenseData$.gcbaLicenseStatus}}</li>
+    <li>TIPO DE LICENCIA: {{licenseData$.licenseTypesGroup.description}}</li>
+    <li>FECHA DE CREACIÓN: {{licenseData$.jobSector.created | date}}</li>
+    <li>DIAGNÓSTICO: {{licenseData$.medicDiagnostic.description}}</li>
+    <li>TER: {{licenseData$.medicDiagnostic.ter}}</li>
+    <li>FECHA DE CERTIFICADO: {{licenseData$.medicalCertificateDate | date}}</li>
+    <li>INICIO DE AUSENTISMO: {{licenseData$.initDate}}</li>
+    <li>DÍAS DEL CERTIFICADO: {{licenseData$.days}}</li>
+    <li>TIPO DE ASIGNACIÓN: {{licenseData$.assignationType}}</li>
+  </ul>
